@@ -1,0 +1,42 @@
+.todo-item {
+  position: relative;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr minmax(150px, 300px) 2fr;
+  box-shadow: 0 3px 3px gray;
+  margin: 1rem auto;
+  width: 30vw;
+  min-width: 290px;
+  max-width: 600px;
+  transition: .3s;
+  padding: 1rem 0;
+  @media all and (max-width: 1370px){
+    padding: 0;
+  }
+
+  span {
+    font-weight: bold;
+    transition: .3s;
+    word-wrap: break-word;
+  }
+  .buttons {
+    justify-self: end;
+    align-self: center;
+    padding-right: .5rem;
+  }
+
+  &--done {
+    background-color: #9593FF;
+
+    span {
+      color: white;
+      word-wrap: break-word;
+    }
+  }
+
+  input {
+    margin: 0 1rem;
+  }
+
+
+}

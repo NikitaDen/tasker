@@ -1,0 +1,115 @@
+@import "./../../components/TodoItem/todo-item";
+@import "./../../components/TodoItem/TodoSubItem/todo-subitem";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+
+:root {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.button {
+  margin: .5rem;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  color: #282c34;
+
+  h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    line-height: 1;
+    margin: 1rem 0 2rem;
+  }
+
+  input {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .main-input {
+    outline: none;
+    border: none;
+    //font-size: 1rem;
+    border-bottom: 1px solid black;
+    padding: 0 0 .5rem 1rem;
+    width: 40vw;
+    min-width: 300px;
+    max-width: 700px;
+  }
+
+  .isDone {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    @media all and (max-width: 375px) {
+      left: 1rem;
+    }
+
+    &--todo {
+      left: 1rem;
+      padding: 0;
+    }
+  }
+
+  .isDoneCheckbox {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    opacity: 0;
+    z-index: 2;
+    padding-left: 1rem;
+
+    &--todo {
+      left: 1rem;
+      padding: 0;
+    }
+
+    @media all and (max-width: 375px) {
+      left: 1rem;
+    }
+  }
+
+  .checkSpan {
+    height: 1rem;
+    width: 1rem;
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid gray;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+    @media all and (max-width: 375px) {
+      left: 1rem;
+    }
+
+    &--todo {
+      left: 1rem;
+      padding: 0;
+    }
+  }
+}
