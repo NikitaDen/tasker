@@ -9,12 +9,7 @@ const TodoSubItem = (props) => {
 
     const editSubTodo = (event) => {
         if (event.key === 'Enter') {
-            props.dispatch({
-                type: 'EDIT_SUB_TODO',
-                subId: props.item.subId,
-                id: props.id,
-                payload: {title: subTitle}
-            });
+            props.dispatch(props.editSubTodoAC(props.item.subId, props.id, {title: subTitle}));
             setDisabled(true);
         }
     };
@@ -22,35 +17,28 @@ const TodoSubItem = (props) => {
     return (
         <div className='todo-subitem'>
             <div className='todo-subitem__check'>
-                {props.item.isDone ? <img src={done} className='isDone' alt="done"/> : <span className={'checkSpan'}/>}
-                <input className='isDoneCheckbox' type="checkbox" onChange={() => props.dispatch({
-                    type: 'TOGGLE_SUB_TODO',
-                    id: props.id,
-                    subId: props.item.subId
-                })}/>
+                {props.item.isDone
+                    ? <img src={done} className='isDone' alt="done"/>
+                    : <span className={'checkSpan'}/>}
+                <input className='isDoneCheckbox' type="checkbox"
+                       onChange={() => props.dispatch(props.toggleSubTodoAC(props.id, props.item.subId))}/>
             </div>
 
-
-            {disabled ? <span style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</span>
+            {disabled
+                ? <span
+                    style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</span>
                 : <input type="text"
                          value={subTitle}
                          onChange={event => setSubTitle(event.target.value)}
                          onKeyPress={editSubTodo}
-                         onBlur={() => {
-                             setDisabled(true)
-                         }}
+                         onBlur={() => {setDisabled(true)}}
                          autoFocus={true}
                          placeholder={'Введите подцель'}/>
             }
+
             <div className='buttons'>
-                <img src={edit} alt='edit' className='button' onClick={() => {
-                    setDisabled(false)
-                }}/>
-                <img src={pin} alt='remove' className='button' onClick={() => props.dispatch({
-                    type: 'DELETE_SUB_TODO',
-                    id: props.id,
-                    subId: props.item.subId
-                })}/>
+                <img src={edit} alt='edit' className='button' onClick={() => {setDisabled(false)}}/>
+                <img src={pin} alt='remove' className='button' onClick={() => props.dispatch(props.deleteSubTodoAC(props.id, props.item.subId))}/>
             </div>
         </div>
     )

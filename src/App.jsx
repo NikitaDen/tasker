@@ -2,7 +2,15 @@ import React, {useEffect, useReducer, useState} from 'react';
 import './assets/styles/styles.scss';
 import TodoItem from "./components/TodoItem/TodoItem";
 import {Context} from "./context";
-import reducer from "./reducer";
+import reducer, {
+    addSubTodoAC,
+    addTodoAC,
+    deleteSubTodoAC,
+    deleteTodoAC,
+    editSubTodoAC,
+    toggleSubTodoAC,
+    toggleTodoAC
+} from "./reducer";
 
 const App = () => {
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -15,15 +23,12 @@ const App = () => {
 
     const addTodo = (event) => {
         if (event.key === 'Enter') {
-            dispatch({
-                type: 'ADD',
-                payload: todoTitle
-            });
+            dispatch(addTodoAC(todoTitle));
             setTodoTitle('');
         }
     };
     return (
-        <Context.Provider value={{dispatch}}>
+        <Context.Provider value={{dispatch, addSubTodoAC, deleteTodoAC, toggleTodoAC, editSubTodoAC, toggleSubTodoAC, deleteSubTodoAC}}>
             <div className="App">
                 <h3>Tasker</h3>
                 <input className='main-input'

@@ -1,6 +1,14 @@
+const ADD = 'ADD';
+const ADD_SUB_TODO = 'ADD_SUB_TODO';
+const DELETE = 'DELETE';
+const TOGGLE_TODO = 'TOGGLE_TODO';
+const EDIT_SUB_TODO = 'EDIT_SUB_TODO';
+const TOGGLE_SUB_TODO = 'TOGGLE_SUB_TODO';
+const DELETE_SUB_TODO = 'DELETE_SUB_TODO';
+
 export default function (state, action) {
     switch (action.type) {
-        case 'ADD':
+        case ADD:
             return [
                 ...state,
                 {
@@ -11,7 +19,7 @@ export default function (state, action) {
                     progress: 0
                 }
             ];
-        case 'ADD_SUB_TODO':
+        case ADD_SUB_TODO:
             return state.map(item => {
                 if (item.id === action.id) {
                     return {
@@ -28,26 +36,7 @@ export default function (state, action) {
                 }
                 return item;
             });
-        case 'EDIT_SUB_TODO':
-            return state.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        subTodo:
-                            item.subTodo.map(subItem => {
-                                if (subItem.subId === action.subId) {
-                                    return {
-                                        ...subItem,
-                                        ...action.payload
-                                    }
-                                }
-                                return subItem;
-                            })
-                    };
-                }
-                return item;
-            });
-        case 'TOGGLE_TODO':
+        case TOGGLE_TODO:
             return state.map(item => {
                 if (item.id === action.id) {
                     return {
@@ -57,7 +46,7 @@ export default function (state, action) {
                 }
                 return item;
             });
-        case 'TOGGLE_SUB_TODO':
+        case TOGGLE_SUB_TODO:
             return state.map(item => {
                 if (item.id === action.id) {
                     return {
@@ -76,9 +65,28 @@ export default function (state, action) {
                 }
                 return item;
             });
-        case 'DELETE':
+        case EDIT_SUB_TODO:
+            return state.map(item => {
+                if (item.id === action.id) {
+                    return {
+                        ...item,
+                        subTodo:
+                            item.subTodo.map(subItem => {
+                                if (subItem.subId === action.subId) {
+                                    return {
+                                        ...subItem,
+                                        ...action.payload
+                                    }
+                                }
+                                return subItem;
+                            })
+                    };
+                }
+                return item;
+            });
+        case DELETE:
             return state.filter(item => item.id !== action.id);
-        case 'DELETE_SUB_TODO':
+        case DELETE_SUB_TODO:
             return state.map(item => {
                 if (item.id === action.id) {
                     return {
@@ -92,3 +100,14 @@ export default function (state, action) {
             return state
     }
 }
+
+export const addTodoAC = (todoTitle) => ({type: ADD, payload: todoTitle});
+export const addSubTodoAC = (id, payload) => ({type: ADD_SUB_TODO, id, payload});
+
+export const toggleTodoAC = (id) => ({type: TOGGLE_TODO, id});
+export const toggleSubTodoAC = (id, subId) => ({type: TOGGLE_SUB_TODO, subId, id});
+
+export const editSubTodoAC = (subId, id, payload) => ({type: EDIT_SUB_TODO, subId, id, payload});
+
+export const deleteTodoAC = (id) => ({type: DELETE, id});
+export const deleteSubTodoAC = (id, subId) => ({type: DELETE_SUB_TODO, subId, id});
