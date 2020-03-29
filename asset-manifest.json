@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tasker/static/css/main.79818b8e.chunk.css",
+    "main.css": "/tasker/static/css/main.bbb6a9d7.chunk.css",
     "main.js": "/tasker/static/js/main.8cac6757.chunk.js",
     "main.js.map": "/tasker/static/js/main.8cac6757.chunk.js.map",
     "runtime-main.js": "/tasker/static/js/runtime-main.28a0037e.js",
@@ -8,9 +8,9 @@
     "static/js/2.dd422aa2.chunk.js": "/tasker/static/js/2.dd422aa2.chunk.js",
     "static/js/2.dd422aa2.chunk.js.map": "/tasker/static/js/2.dd422aa2.chunk.js.map",
     "index.html": "/tasker/index.html",
-    "precache-manifest.b5d122aad4113f5630c551fc577222d5.js": "/tasker/precache-manifest.b5d122aad4113f5630c551fc577222d5.js",
+    "precache-manifest.616d1dc9f9c7b0f294f6566c38571060.js": "/tasker/precache-manifest.616d1dc9f9c7b0f294f6566c38571060.js",
     "service-worker.js": "/tasker/service-worker.js",
-    "static/css/main.79818b8e.chunk.css.map": "/tasker/static/css/main.79818b8e.chunk.css.map",
+    "static/css/main.bbb6a9d7.chunk.css.map": "/tasker/static/css/main.bbb6a9d7.chunk.css.map",
     "static/js/2.dd422aa2.chunk.js.LICENSE.txt": "/tasker/static/js/2.dd422aa2.chunk.js.LICENSE.txt",
     "static/media/add.svg": "/tasker/static/media/add.b1160944.svg",
     "static/media/delete.svg": "/tasker/static/media/delete.a11d67e2.svg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.28a0037e.js",
     "static/js/2.dd422aa2.chunk.js",
-    "static/css/main.79818b8e.chunk.css",
+    "static/css/main.bbb6a9d7.chunk.css",
     "static/js/main.8cac6757.chunk.js"
   ]
 }
