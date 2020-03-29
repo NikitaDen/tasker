@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "00e131b010b51e471b676e1b7d32848b",
+    "revision": "e586f95c94369c38e46c05d79964f435",
     "url": "/tasker/index.html"
   },
   {
-    "revision": "f9b11ee304798086f850",
-    "url": "/tasker/static/css/main.6b295bb9.chunk.css"
+    "revision": "5fbb1edb7959ae9209da",
+    "url": "/tasker/static/css/main.79818b8e.chunk.css"
   },
   {
     "revision": "25aea5debcbf6b9e0a45",
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tasker/static/js/2.dd422aa2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f9b11ee304798086f850",
-    "url": "/tasker/static/js/main.83e70909.chunk.js"
+    "revision": "5fbb1edb7959ae9209da",
+    "url": "/tasker/static/js/main.8cac6757.chunk.js"
   },
   {
     "revision": "7b3b8859fab62c4a6368",
     "url": "/tasker/static/js/runtime-main.28a0037e.js"
   },
   {
-    "revision": "a5e0b6381268ee4ee5b61167bd4ad2a3",
-    "url": "/tasker/static/media/add.a5e0b638.svg"
+    "revision": "b1160944bc5683e0ef5c1c3dee69d324",
+    "url": "/tasker/static/media/add.b1160944.svg"
   },
   {
-    "revision": "ee635b5a603feeb769b6ee2c2553c158",
-    "url": "/tasker/static/media/delete.ee635b5a.svg"
+    "revision": "a11d67e21e9b44aa69e5474aba466006",
+    "url": "/tasker/static/media/delete.a11d67e2.svg"
   },
   {
     "revision": "6fc8520a305ce5d63845e0ba1561e0b3",
