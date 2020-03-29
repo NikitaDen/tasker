@@ -14,7 +14,9 @@ const TodoItem = (props) => {
     return (
         <>
             <div className={props.isDone ? 'todo-item todo-item--done' : 'todo-item'}>
-                <div>
+                <div className='loader'/>
+
+                <div className='todo-item__check'>
                     {props.isDone
                         ? <img src={done} className='isDone isDone--todo' alt="done"/>
                         : <span className={'checkSpan checkSpan--todo'}/>
@@ -26,6 +28,7 @@ const TodoItem = (props) => {
                 </div>
 
                 <span>{props.title}</span>
+                <div className='date'>{props.date}</div>
 
                 <div className='buttons'>
                     <img src={add}

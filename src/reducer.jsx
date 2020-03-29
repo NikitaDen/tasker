@@ -5,39 +5,53 @@ const TOGGLE_TODO = 'TOGGLE_TODO';
 const EDIT_SUB_TODO = 'EDIT_SUB_TODO';
 const TOGGLE_SUB_TODO = 'TOGGLE_SUB_TODO';
 const DELETE_SUB_TODO = 'DELETE_SUB_TODO';
+const FILTER = 'FILTER';
 
 export default function (state, action) {
     switch (action.type) {
-        case ADD:
-            return [
+        case FILTER:
+            return {
                 ...state,
-                {
-                    id: Date.now(),
-                    title: action.payload,
-                    isDone: false,
-                    subTodo: [],
-                    progress: 0
-                }
-            ];
+                filter: action.filter,
+            };
+        case ADD:
+            return {
+                ...state,
+                tasks: [
+                    ...state.tasks,
+                    {
+                        id: Date.now(),
+                        date: `${new Date().toLocaleDateString()}`,
+                        title: action.payload,
+                        isDone: false,
+                        subTodo: [],
+                        progress: 0
+                    }]
+            };
         case ADD_SUB_TODO:
-            return state.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        subTodo: [
-                            ...item.subTodo,
-                            {
-                                ...action.payload,
-                                subId: Date.now(),
-                                isDone: false
-                            }
-                        ]
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            subTodo: [
+                                ...item.subTodo,
+                                {
+                                    ...action.payload,
+                                    subId: Date.now(),
+                                    isDone: false
+                                }
+                            ]
+                        }
                     }
-                }
-                return item;
-            });
+                    return item;
+                })
+            };
         case TOGGLE_TODO:
-            return state.map(item => {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
                 if (item.id === action.id) {
                     return {
                         ...item,
@@ -45,9 +59,11 @@ export default function (state, action) {
                     }
                 }
                 return item;
-            });
+            })};
         case TOGGLE_SUB_TODO:
-            return state.map(item => {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
                 if (item.id === action.id) {
                     return {
                         ...item,
@@ -64,9 +80,11 @@ export default function (state, action) {
                     };
                 }
                 return item;
-            });
+            })};
         case EDIT_SUB_TODO:
-            return state.map(item => {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
                 if (item.id === action.id) {
                     return {
                         ...item,
@@ -83,11 +101,15 @@ export default function (state, action) {
                     };
                 }
                 return item;
-            });
+            })};
         case DELETE:
-            return state.filter(item => item.id !== action.id);
+            return {
+                ...state,
+                tasks: state.tasks.filter(item => item.id !== action.id)};
         case DELETE_SUB_TODO:
-            return state.map(item => {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
                 if (item.id === action.id) {
                     return {
                         ...item,
@@ -95,11 +117,13 @@ export default function (state, action) {
                     };
                 }
                 return item;
-            });
+            })};
         default:
             return state
     }
 }
+
+export const filterAC = (filter) => ({type: FILTER, filter});
 
 export const addTodoAC = (todoTitle) => ({type: ADD, payload: todoTitle});
 export const addSubTodoAC = (id, payload) => ({type: ADD_SUB_TODO, id, payload});

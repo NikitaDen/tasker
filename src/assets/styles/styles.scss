@@ -6,6 +6,10 @@
 :root {
   box-sizing: border-box;
   font-size: 1rem;
+
+  @media all and (max-width: 414px){
+    font-size: .9rem;
+  }
 }
 
 * {
@@ -21,9 +25,55 @@ body {
 
 .button {
   margin: .5rem;
+  cursor: pointer;
+  outline: none;
+
+  &--filter {
+    background-color: #9593ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: .5rem 1.5rem;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    transition: .3s;
+    &:active {
+      transform: scale(.9);
+    }
+  }
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.date {
+  position: absolute;
+  right: 1rem;
+  padding-bottom: .27rem;
+  bottom: 0;
+  font-size: .8rem;
+  color: darkgrey;
+  text-align: center;
+
+  @media all and (max-width: 492px){
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: dodgerblue;
+  bottom: 0;
+  left: -100%;
+  transition: .6s ease-in-out;
 }
 
 .App {
+  background-color: #282c34;
   height: 100vh;
   width: 100vw;
   text-align: center;
@@ -34,60 +84,64 @@ body {
   h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 3rem;
+    color: white;
     line-height: 1;
     margin: 1rem 0 2rem;
   }
 
   input {
     font-family: 'Open Sans', sans-serif;
+    color: white;
+
+    &::placeholder {
+      color: white;
+    }
   }
 
   .main-input {
     outline: none;
     border: none;
-    //font-size: 1rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
     padding: 0 0 .5rem 1rem;
     width: 40vw;
-    min-width: 300px;
+    background-color: transparent;
+    min-width: 280px;
     max-width: 700px;
+
   }
 
   .isDone {
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     pointer-events: none;
     @media all and (max-width: 375px) {
       left: 1rem;
     }
 
     &--todo {
-      left: 1rem;
+      left: 2rem;
       padding: 0;
     }
   }
 
   .isDoneCheckbox {
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     margin: 0;
     height: 1.5rem;
     width: 1.5rem;
     opacity: 0;
     z-index: 2;
     padding-left: 1rem;
+    align-self: center;
 
     &--todo {
-      left: 1rem;
+      left: 2rem;
       padding: 0;
-    }
-
-    @media all and (max-width: 375px) {
-      left: 1rem;
     }
   }
 
@@ -98,17 +152,15 @@ body {
     background-color: transparent;
     border: 1px solid gray;
     position: absolute;
-    left: 0;
+    border-radius: .25rem;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 1;
-    @media all and (max-width: 375px) {
-      left: 1rem;
-    }
 
     &--todo {
-      left: 1rem;
+      left: 2rem;
       padding: 0;
     }
   }
