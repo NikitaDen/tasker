@@ -26,7 +26,8 @@ export default function (state, action) {
                         isDone: false,
                         subTodo: [],
                         progress: 0
-                    }]
+                    }
+                ]
             };
         case ADD_SUB_TODO:
             return {
@@ -52,72 +53,77 @@ export default function (state, action) {
             return {
                 ...state,
                 tasks: state.tasks.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        isDone: !item.isDone
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            isDone: !item.isDone
+                        }
                     }
-                }
-                return item;
-            })};
+                    return item;
+                })
+            };
         case TOGGLE_SUB_TODO:
             return {
                 ...state,
                 tasks: state.tasks.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        subTodo:
-                            item.subTodo.map(subItem => {
-                                if (subItem.subId === action.subId) {
-                                    return {
-                                        ...subItem,
-                                        isDone: !subItem.isDone
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            subTodo:
+                                item.subTodo.map(subItem => {
+                                    if (subItem.subId === action.subId) {
+                                        return {
+                                            ...subItem,
+                                            isDone: !subItem.isDone
+                                        }
                                     }
-                                }
-                                return subItem;
-                            })
-                    };
-                }
-                return item;
-            })};
+                                    return subItem;
+                                })
+                        };
+                    }
+                    return item;
+                })
+            };
         case EDIT_SUB_TODO:
             return {
                 ...state,
                 tasks: state.tasks.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        subTodo:
-                            item.subTodo.map(subItem => {
-                                if (subItem.subId === action.subId) {
-                                    return {
-                                        ...subItem,
-                                        ...action.payload
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            subTodo:
+                                item.subTodo.map(subItem => {
+                                    if (subItem.subId === action.subId) {
+                                        return {
+                                            ...subItem,
+                                            ...action.payload
+                                        }
                                     }
-                                }
-                                return subItem;
-                            })
-                    };
-                }
-                return item;
-            })};
+                                    return subItem;
+                                })
+                        };
+                    }
+                    return item;
+                })
+            };
         case DELETE:
             return {
                 ...state,
-                tasks: state.tasks.filter(item => item.id !== action.id)};
+                tasks: state.tasks.filter(item => item.id !== action.id)
+            };
         case DELETE_SUB_TODO:
             return {
                 ...state,
                 tasks: state.tasks.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        subTodo: item.subTodo.filter(subItem => subItem.subId !== action.subId)
-                    };
-                }
-                return item;
-            })};
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            subTodo: item.subTodo.filter(subItem => subItem.subId !== action.subId)
+                        };
+                    }
+                    return item;
+                })
+            };
         default:
             return state
     }

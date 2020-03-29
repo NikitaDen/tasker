@@ -31,14 +31,19 @@ const TodoSubItem = (props) => {
                          value={subTitle}
                          onChange={event => setSubTitle(event.target.value)}
                          onKeyPress={editSubTodo}
-                         onBlur={() => {setDisabled(true)}}
+                         onBlur={() => {
+                             setDisabled(true)
+                         }}
                          autoFocus={true}
-                         placeholder={'Введите подцель'}/>
+                         placeholder={'Input subtask...'}/>
             }
 
             <div className='buttons'>
-                <img src={edit} alt='edit' className='button' onClick={() => {setDisabled(false)}}/>
-                <img src={pin} alt='remove' className='button' onClick={() => props.dispatch(props.deleteSubTodoAC(props.id, props.item.subId))}/>
+                <img src={pin} alt='remove' className='button'
+                     onClick={() => props.dispatch(props.deleteSubTodoAC(props.id, props.item.subId))}/>
+                <img src={edit} alt='edit' className='button' onClick={() => {
+                    setDisabled(false)
+                }}/>
             </div>
         </div>
     )
