@@ -29,9 +29,7 @@ const App = () => {
             setTodoTitle('');
         }
     };
-    // debugger
-    const todoItems = state.tasks.map(item => <TodoItem key={item.id} subTodo={item.subTodo} isDone={item.isDone} date={item.date} id={item.id}
-                                                                                  title={item.title}/>).reverse();
+
     return (
         <Context.Provider value={{dispatch, filterAC, addSubTodoAC, deleteTodoAC, toggleTodoAC, editSubTodoAC, toggleSubTodoAC, deleteSubTodoAC}}>
             <div className="App">
