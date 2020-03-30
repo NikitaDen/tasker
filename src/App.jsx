@@ -62,17 +62,18 @@ const App = () => {
                     </button>
                 </div>
                 {
-                    (state.filter === 'All' && state.tasks.filter(() => true).map(item => <TodoItem key={item.id}
-                                                                                                    subTodo={item.subTodo}
-                                                                                                    isDone={item.isDone}
-                                                                                                    date={item.date}
-                                                                                                    id={item.id}
-                                                                                                    title={item.title}/>).reverse()) ||
+                    (state.filter === 'All' && state.tasks.filter(() => true).map(item =>
+                        <TodoItem key={item.id}
+                                  subTodo={item.subTodo}
+                                  isDone={item.isDone}
+                                  date={item.date}
+                                  id={item.id}
+                                  title={item.title}/>).reverse()) ||
                     (state.filter === 'Completed' && state.tasks.filter(item => item.isDone === true).map(item =>
                         <TodoItem key={item.id} subTodo={item.subTodo} isDone={item.isDone} date={item.date}
                                   id={item.id}
                                   title={item.title}/>).reverse()) ||
-                    (state.filter === 'Active' && state.tasks.filter((item) => item.isDone === false).map(item =>
+                    (state.filter === 'Active' && state.tasks.filter(item => item.isDone === false).map(item =>
                         <TodoItem key={item.id} subTodo={item.subTodo} isDone={item.isDone} date={item.date}
                                   id={item.id}
                                   title={item.title}/>).reverse())

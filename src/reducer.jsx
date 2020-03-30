@@ -56,7 +56,7 @@ export default function (state, action) {
                     if (item.id === action.id) {
                         return {
                             ...item,
-                            isDone: !item.isDone
+                            isDone: action.isDone
                         }
                     }
                     return item;
@@ -134,7 +134,7 @@ export const filterAC = (filter) => ({type: FILTER, filter});
 export const addTodoAC = (todoTitle) => ({type: ADD, payload: todoTitle});
 export const addSubTodoAC = (id, payload) => ({type: ADD_SUB_TODO, id, payload});
 
-export const toggleTodoAC = (id) => ({type: TOGGLE_TODO, id});
+export const toggleTodoAC = (id, isDone) => ({type: TOGGLE_TODO, id, isDone});
 export const toggleSubTodoAC = (id, subId) => ({type: TOGGLE_SUB_TODO, subId, id});
 
 export const editSubTodoAC = (subId, id, payload) => ({type: EDIT_SUB_TODO, subId, id, payload});

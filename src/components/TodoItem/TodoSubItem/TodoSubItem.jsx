@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import pin from './../../../assets/images/pin.svg';
 import edit from './../../../assets/images/edit.svg';
 import done from './../../../assets/images/done.svg';
@@ -14,6 +14,8 @@ const TodoSubItem = (props) => {
         }
     };
 
+    useEffect(() => props.toggleDone(true), [props.item.isDone]);
+
     return (
         <div className='todo-subitem'>
             <div className='todo-subitem__check'>
@@ -21,12 +23,12 @@ const TodoSubItem = (props) => {
                     ? <img src={done} className='isDone' alt="done"/>
                     : <span className={'checkSpan'}/>}
                 <input className='isDoneCheckbox' type="checkbox"
-                       onChange={() => props.dispatch(props.toggleSubTodoAC(props.id, props.item.subId))}/>
+                       onChange={() => {props.dispatch(props.toggleSubTodoAC(props.id, props.item.subId))}}/>
             </div>
 
             {disabled
-                ? <span
-                    style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</span>
+                ? <div className={'todo-subitem__text'}
+                    style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</div>
                 : <input type="text"
                          value={subTitle}
                          onChange={event => setSubTitle(event.target.value)}

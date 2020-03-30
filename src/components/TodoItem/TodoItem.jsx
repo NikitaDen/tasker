@@ -11,6 +11,14 @@ const TodoItem = (props) => {
         toggleTodoAC, editSubTodoAC, toggleSubTodoAC, deleteSubTodoAC
     } = useContext(Context);
 
+    const toggleDone = (isDone) => {
+        if (props.subTodo.length === props.subTodo.filter(item => item.isDone === true).length) {
+            dispatch(toggleTodoAC(props.id, isDone));
+        } else {
+            dispatch(toggleTodoAC(props.id, !isDone));
+        }
+    };
+
     return (
         <>
             <div className={props.isDone ? 'todo-item todo-item--done' : 'todo-item'}>
@@ -24,7 +32,7 @@ const TodoItem = (props) => {
                     <input type="checkbox"
                            className={'isDoneCheckbox isDoneCheckbox--todo'}
                            checked={props.isDone}
-                           onChange={() => dispatch(toggleTodoAC(props.id))}/>
+                           onChange={() => dispatch(toggleTodoAC(props.id, !props.isDone))}/>
                 </div>
 
                 <span>{props.title}</span>
@@ -40,7 +48,8 @@ const TodoItem = (props) => {
                          onClick={() => dispatch(deleteTodoAC(props.id))}/>
                 </div>
             </div>
-            {props.subTodo.map(item => <TodoSubItem key={item.subId} {...props} dispatch={dispatch}
+            {props.subTodo.map(item => <TodoSubItem key={item.subId} {...props} toggleDone={toggleDone}
+                                                    dispatch={dispatch}
                                                     toggleSubTodoAC={toggleSubTodoAC} deleteSubTodoAC={deleteSubTodoAC}
                                                     editSubTodoAC={editSubTodoAC}
                                                     item={item}/>).reverse()}
