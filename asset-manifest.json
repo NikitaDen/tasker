@@ -1,27 +1,29 @@
 {
   "files": {
-    "main.css": "/tasker/static/css/main.da6a3eb4.chunk.css",
-    "main.js": "/tasker/static/js/main.22105dd6.chunk.js",
-    "main.js.map": "/tasker/static/js/main.22105dd6.chunk.js.map",
+    "main.css": "/tasker/static/css/main.67f3cf80.chunk.css",
+    "main.js": "/tasker/static/js/main.c9aa0a81.chunk.js",
+    "main.js.map": "/tasker/static/js/main.c9aa0a81.chunk.js.map",
     "runtime-main.js": "/tasker/static/js/runtime-main.28a0037e.js",
     "runtime-main.js.map": "/tasker/static/js/runtime-main.28a0037e.js.map",
-    "static/js/2.dd422aa2.chunk.js": "/tasker/static/js/2.dd422aa2.chunk.js",
-    "static/js/2.dd422aa2.chunk.js.map": "/tasker/static/js/2.dd422aa2.chunk.js.map",
+    "static/js/2.d910a20b.chunk.js": "/tasker/static/js/2.d910a20b.chunk.js",
+    "static/js/2.d910a20b.chunk.js.map": "/tasker/static/js/2.d910a20b.chunk.js.map",
     "index.html": "/tasker/index.html",
-    "precache-manifest.9b00310bee3628f160d2faaa5fe6bbb5.js": "/tasker/precache-manifest.9b00310bee3628f160d2faaa5fe6bbb5.js",
+    "precache-manifest.860a2319376d6229d2e970060884a6e7.js": "/tasker/precache-manifest.860a2319376d6229d2e970060884a6e7.js",
     "service-worker.js": "/tasker/service-worker.js",
-    "static/css/main.da6a3eb4.chunk.css.map": "/tasker/static/css/main.da6a3eb4.chunk.css.map",
-    "static/js/2.dd422aa2.chunk.js.LICENSE.txt": "/tasker/static/js/2.dd422aa2.chunk.js.LICENSE.txt",
+    "static/css/main.67f3cf80.chunk.css.map": "/tasker/static/css/main.67f3cf80.chunk.css.map",
+    "static/js/2.d910a20b.chunk.js.LICENSE.txt": "/tasker/static/js/2.d910a20b.chunk.js.LICENSE.txt",
     "static/media/add.svg": "/tasker/static/media/add.b1160944.svg",
     "static/media/delete.svg": "/tasker/static/media/delete.a11d67e2.svg",
     "static/media/done.svg": "/tasker/static/media/done.6fc8520a.svg",
     "static/media/edit.svg": "/tasker/static/media/edit.c22620d9.svg",
-    "static/media/pin.svg": "/tasker/static/media/pin.fd6c39aa.svg"
+    "static/media/hide.svg": "/tasker/static/media/hide.20fcb843.svg",
+    "static/media/pin.svg": "/tasker/static/media/pin.fd6c39aa.svg",
+    "static/media/show.svg": "/tasker/static/media/show.df980639.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.28a0037e.js",
-    "static/js/2.dd422aa2.chunk.js",
-    "static/css/main.da6a3eb4.chunk.css",
-    "static/js/main.22105dd6.chunk.js"
+    "static/js/2.d910a20b.chunk.js",
+    "static/css/main.67f3cf80.chunk.css",
+    "static/js/main.c9aa0a81.chunk.js"
   ]
 }
