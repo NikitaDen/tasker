@@ -44,7 +44,7 @@
   }
 
   &--done {
-    .loader {
+    .complete-indicator {
       left: 0;
     }
   }
@@ -52,6 +52,4 @@
   input {
     margin: 0 1rem;
   }
-
-
 }

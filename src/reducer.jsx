@@ -2,6 +2,7 @@ const ADD = 'ADD';
 const ADD_SUB_TODO = 'ADD_SUB_TODO';
 const DELETE = 'DELETE';
 const TOGGLE_TODO = 'TOGGLE_TODO';
+const EDIT_TODO = 'EDIT_TODO';
 const EDIT_SUB_TODO = 'EDIT_SUB_TODO';
 const TOGGLE_SUB_TODO = 'TOGGLE_SUB_TODO';
 const DELETE_SUB_TODO = 'DELETE_SUB_TODO';
@@ -27,6 +28,21 @@ export default function (state, action) {
                         subTodo: [],
                         progress: 0
                     }
+                ]
+            };
+        case EDIT_TODO:
+            return {
+                ...state,
+                tasks: [
+                    ...state.tasks.map(item => {
+                        if (item.id === action.id) {
+                            return {
+                                ...item,
+                                title: action.title
+                            }
+                        }
+                        return item
+                    })
                 ]
             };
         case ADD_SUB_TODO:
@@ -137,6 +153,7 @@ export const addSubTodoAC = (id, payload) => ({type: ADD_SUB_TODO, id, payload})
 export const toggleTodoAC = (id, isDone) => ({type: TOGGLE_TODO, id, isDone});
 export const toggleSubTodoAC = (id, subId) => ({type: TOGGLE_SUB_TODO, subId, id});
 
+export const editTodoAC = (id, title) => ({type: EDIT_TODO, id, title});
 export const editSubTodoAC = (subId, id, payload) => ({type: EDIT_SUB_TODO, subId, id, payload});
 
 export const deleteTodoAC = (id) => ({type: DELETE, id});

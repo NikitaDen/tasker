@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Context} from "../../context";
 import TodoSubItem from "./TodoSubItem/TodoSubItem";
 import add from "../../assets/images/add.svg";
@@ -6,13 +6,17 @@ import remove from "../../assets/images/delete.svg";
 import done from "../../assets/images/done.svg";
 import see from "../../assets/images/show.svg";
 import hide from "../../assets/images/hide.svg";
+import edit from "../../assets/images/edit.svg";
+import Button from "../Button/Button";
 
 const TodoItem = (props) => {
     const {
         dispatch, addSubTodoAC, deleteTodoAC,
-        toggleTodoAC, editSubTodoAC, toggleSubTodoAC, deleteSubTodoAC
+        toggleTodoAC, editSubTodoAC, editTodoAC, toggleSubTodoAC, deleteSubTodoAC
     } = useContext(Context);
     const [show, setShow] = useState(true);
+    const [editMode, setEditMode] = useState(false);
+    const [newTitle, setNewTitle] = useState(props.title);
 
     const toggleDone = (isDone) => {
         if (props.subTodo.length === props.subTodo.filter(item => item.isDone === true).length) {
@@ -22,10 +26,25 @@ const TodoItem = (props) => {
         }
     };
 
+    useEffect(() => {
+        dispatch(editTodoAC(props.id, newTitle))
+    }, [newTitle]);
+
+    const changeTitle = (e) => {
+        setNewTitle(e.target.value);
+        dispatch(editTodoAC(props.id, newTitle))
+    };
+
+    const setNewTitleToTask = (e) => {
+        if (e.key === 'Enter') {
+            setEditMode(false)
+        }
+    };
+
     return (
         <>
             <div className={props.isDone ? 'todo-item todo-item--done' : 'todo-item'}>
-                <div className='loader'/>
+                <div className='complete-indicator'/>
 
                 <div className='todo-item__check'>
                     {props.isDone
@@ -38,19 +57,17 @@ const TodoItem = (props) => {
                            onChange={() => dispatch(toggleTodoAC(props.id, !props.isDone))}/>
                 </div>
 
-                <span>{props.title}</span>
+                {editMode ? <input type="text" autoFocus={editMode} value={newTitle} onChange={changeTitle} onBlur={() => setEditMode(false)}
+                                   onKeyPress={setNewTitleToTask}/> :
+                    <span style={newTitle ? null : {color: 'gray'} }>{newTitle ? newTitle : 'Title is Empty'}</span>}
+
                 <div className='date'>{props.date}</div>
 
                 <div className='buttons'>
-                    <img src={add}
-                         className='button'
-                         onClick={() => dispatch(addSubTodoAC(props.id, {title: '', subId: Date.now()}))}
-                         alt='add'/>
-
-                    <img src={remove} alt={'delete'} className='button'
-                         onClick={() => dispatch(deleteTodoAC(props.id))}/>
-                    <img src={show? hide : see} alt={'hide'} className='button'
-                         onClick={() => setShow(!show)}/>
+                    <Button src={add} alt={'add'} className={'button'} onClickFunc={() => dispatch(addSubTodoAC(props.id, {title: '', subId: Date.now()}))}/>
+                    <Button src={edit} alt={'edit'} className={'button'} onClickFunc={() => {setEditMode(!editMode)}}/>
+                    <Button src={show ? hide : see} className={'button'} alt={'hide'} onClickFunc={() => setShow(!show)}/>
+                    <Button src={remove} alt={'delete'} className={'button'} onClickFunc={() => dispatch(deleteTodoAC(props.id))}/>
                 </div>
             </div>
             {show ? props.subTodo.map(item => <TodoSubItem key={item.subId} {...props} toggleDone={toggleDone}

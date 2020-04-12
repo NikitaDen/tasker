@@ -40,7 +40,7 @@ const TodoSubItem = (props) => {
                          onBlur={() => {
                              setDisabled(true)
                          }}
-                         autoFocus={!subTitle}
+                         autoFocus={!disabled}
                          placeholder={'Input subtask...'}/>
             }
 

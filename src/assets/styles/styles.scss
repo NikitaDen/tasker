@@ -23,27 +23,41 @@ body {
   overflow-x: hidden;
 }
 
+input {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1.5px;
+  &::placeholder {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255, 255, 255, .35);
+  }
+}
+
+span {
+  letter-spacing: 1.5px;
+}
+
 .button {
   margin: .5rem;
   cursor: pointer;
   outline: none;
 
   &--filter {
-    background-color: #9593ff;
+    background-color: #282c34;
     color: white;
-    font-weight: bold;
     border: none;
+    letter-spacing: 2px;
     padding: .5rem 1.5rem;
     border-radius: .5rem;
     margin-top: 1rem;
     transition: .3s;
+    font-family: 'Open Sans', sans-serif;
 
     &:active {
       transform: scale(.9);
     }
 
     &.active {
-      background-color: indigo;
+      background-color: darkslategray;
     }
   }
 }
@@ -67,7 +81,7 @@ input[type='checkbox'] {
   }
 }
 
-.loader {
+.complete-indicator {
   position: absolute;
   width: 100%;
   height: 4px;
@@ -77,95 +91,144 @@ input[type='checkbox'] {
   transition: .6s ease-in-out;
 }
 
-.App {
-  background-color: #282c34;
+#dark-check {
+  opacity: 0;
+  position: absolute;
+  &:checked ~ .dark-mode > .toggle {
+    left: 100%;
+    transform: translateX(-108%);
+  }
+}
+
+.dark-mode {
+  display: inline-block;
+  position: relative;
+  //top: 1rem;
+  //right: 1rem;
+  height: 2rem;
+  width: 3.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 5px gray;
+
+  .toggle {
+    position: absolute;
+    height: 1.7rem;
+    width: 1.7rem;
+    background: #61dafb no-repeat center;
+    background-size: 70%;
+    border-radius: .85rem;
+    left: 3px;
+    top: 2.5px;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.wrapper {
+  background-color: black;
   height: 100vh;
   width: 100vw;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
   color: #282c34;
+  transition: .2s;
 
-  h3 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3rem;
-    color: white;
-    line-height: 1;
-    margin: 1rem 0 2rem;
+  &--light {
+    filter: invert(1);
   }
 
-  input {
-    font-family: 'Open Sans', sans-serif;
-    color: white;
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 0;
 
-    &::placeholder {
-      color: rgba(255, 255, 255, .35);
-    }
-  }
-
-  .main-input {
-    outline: none;
-    border: none;
-    border-bottom: 1px solid white;
-    padding: 0 0 .5rem;
-    width: 40vw;
-    background-color: transparent;
-    min-width: 280px;
-    max-width: 700px;
-  }
-
-  .isDone {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    @media all and (max-width: 375px) {
-      left: 1rem;
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
-    &--todo {
-      left: 2rem;
+    h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: white;
+      line-height: 1;
+      text-align: left;
+    }
+
+    .main-input {
+      color: white;
+    }
+
+    .main-input {
+      outline: none;
+      border: none;
+      border-bottom: 1px solid white;
+      padding: 0 0 .5rem;
+      width: 40vw;
+      background-color: transparent;
+      min-width: 280px;
+      max-width: 700px;
+    }
+
+    .isDone {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      @media all and (max-width: 375px) {
+        left: 1rem;
+      }
+
+      &--todo {
+        left: 2rem;
+        padding: 0;
+      }
+    }
+
+    .isDoneCheckbox {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      height: 1.5rem;
+      width: 1.5rem;
+      opacity: 0;
+      z-index: 2;
+      padding-left: 1rem;
+      align-self: center;
+
+      &--todo {
+        left: 2rem;
+        padding: 0;
+      }
+    }
+
+    .checkSpan {
+      height: 1rem;
+      width: 1rem;
       padding: 0;
-    }
-  }
+      background-color: transparent;
+      border: 1px solid gray;
+      position: absolute;
+      border-radius: .25rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
 
-  .isDoneCheckbox {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    height: 1.5rem;
-    width: 1.5rem;
-    opacity: 0;
-    z-index: 2;
-    padding-left: 1rem;
-    align-self: center;
-
-    &--todo {
-      left: 2rem;
-      padding: 0;
-    }
-  }
-
-  .checkSpan {
-    height: 1rem;
-    width: 1rem;
-    padding: 0;
-    background-color: transparent;
-    border: 1px solid gray;
-    position: absolute;
-    border-radius: .25rem;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1;
-
-    &--todo {
-      left: 2rem;
-      padding: 0;
+      &--todo {
+        left: 2rem;
+        padding: 0;
+      }
     }
   }
 }
