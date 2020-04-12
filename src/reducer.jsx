@@ -21,7 +21,7 @@ export default function (state, action) {
                     ...state.tasks,
                     {
                         id: Date.now(),
-                        date: `${new Date().toLocaleDateString()}`,
+                        date: `${new Date().toLocaleString()}`,
                         title: action.payload,
                         isDone: false,
                         subTodo: [],

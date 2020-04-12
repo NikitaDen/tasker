@@ -30,12 +30,15 @@
   span {
     transition: .3s;
     word-wrap: break-word;
-    padding: .5rem .5rem 1.5rem;
+    display: block;
   }
 
   .buttons {
     justify-self: end;
     align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
     padding-right: .5rem;
     text-align: center;
   }

@@ -1,15 +1,18 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Context} from "../../context";
 import TodoSubItem from "./TodoSubItem/TodoSubItem";
 import add from "../../assets/images/add.svg";
 import remove from "../../assets/images/delete.svg";
 import done from "../../assets/images/done.svg";
+import see from "../../assets/images/show.svg";
+import hide from "../../assets/images/hide.svg";
 
 const TodoItem = (props) => {
     const {
         dispatch, addSubTodoAC, deleteTodoAC,
         toggleTodoAC, editSubTodoAC, toggleSubTodoAC, deleteSubTodoAC
     } = useContext(Context);
+    const [show, setShow] = useState(true);
 
     const toggleDone = (isDone) => {
         if (props.subTodo.length === props.subTodo.filter(item => item.isDone === true).length) {
@@ -46,13 +49,16 @@ const TodoItem = (props) => {
 
                     <img src={remove} alt={'delete'} className='button'
                          onClick={() => dispatch(deleteTodoAC(props.id))}/>
+                    <img src={show? hide : see} alt={'hide'} className='button'
+                         onClick={() => setShow(!show)}/>
                 </div>
             </div>
-            {props.subTodo.map(item => <TodoSubItem key={item.subId} {...props} toggleDone={toggleDone}
-                                                    dispatch={dispatch}
-                                                    toggleSubTodoAC={toggleSubTodoAC} deleteSubTodoAC={deleteSubTodoAC}
-                                                    editSubTodoAC={editSubTodoAC}
-                                                    item={item}/>).reverse()}
+            {show ? props.subTodo.map(item => <TodoSubItem key={item.subId} {...props} toggleDone={toggleDone}
+                                                           dispatch={dispatch}
+                                                           toggleSubTodoAC={toggleSubTodoAC}
+                                                           deleteSubTodoAC={deleteSubTodoAC}
+                                                           editSubTodoAC={editSubTodoAC}
+                                                           item={item}/>).reverse() : null}
         </>
     )
 };

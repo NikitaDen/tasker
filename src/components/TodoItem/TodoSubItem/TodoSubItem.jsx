@@ -4,8 +4,8 @@ import edit from './../../../assets/images/edit.svg';
 import done from './../../../assets/images/done.svg';
 
 const TodoSubItem = (props) => {
-    const [subTitle, setSubTitle] = useState('');
-    const [disabled, setDisabled] = useState(false);
+    const [subTitle, setSubTitle] = useState(props.item.title || '');
+    const [disabled, setDisabled] = useState(props.item.title && true);
 
     const editSubTodo = (event) => {
         if (event.key === 'Enter') {
@@ -23,12 +23,16 @@ const TodoSubItem = (props) => {
                     ? <img src={done} className='isDone' alt="done"/>
                     : <span className={'checkSpan'}/>}
                 <input className='isDoneCheckbox' type="checkbox"
-                       onChange={() => {props.dispatch(props.toggleSubTodoAC(props.id, props.item.subId))}}/>
+                       onChange={() => {
+                           props.dispatch(props.toggleSubTodoAC(props.id, props.item.subId))
+                       }}/>
             </div>
 
             {disabled
-                ? <div className={'todo-subitem__text'}
-                    style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</div>
+                ? <div className={'todo-subitem__text'}>
+                <span
+                      style={props.item.isDone ? {textDecoration: 'line-through'} : {}}>{props.item.title || 'Press edit'}</span>
+                </div>
                 : <input type="text"
                          value={subTitle}
                          onChange={event => setSubTitle(event.target.value)}
@@ -36,7 +40,7 @@ const TodoSubItem = (props) => {
                          onBlur={() => {
                              setDisabled(true)
                          }}
-                         autoFocus={true}
+                         autoFocus={!subTitle}
                          placeholder={'Input subtask...'}/>
             }
 
